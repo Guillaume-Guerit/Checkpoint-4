@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 function LimitsDetailsMain() {
   const [data, setData] = useState([]);
+  const [comments, setComments] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -11,6 +12,7 @@ function LimitsDetailsMain() {
       .get(`${import.meta.env.VITE_BACKEND_URL}/limitsdetails/${id}`)
       .then((res) => {
         setData(res.data);
+        setComments(res.data.comments);
       })
       .catch((err) => {
         console.error(err);
@@ -40,15 +42,37 @@ function LimitsDetailsMain() {
             <p className="mb-4 text-sm ml-4">{data?.FirstText}</p>
           </div>
           <div className="flex flex-row justify-center">
-            <p className="mb-4 text-sm mr-4">{data?.FirstText}</p>
+            <p className="mb-4 text-sm mr-4">{data?.SecondText}</p>
             <img
               className="object-contain w-1/2"
-              src={data?.SecondImageLink}
-              alt={data?.SecondImageAlt}
+              src={data?.ThirdImageLink}
+              alt={data?.ThirdImageAlt}
             />
+          </div>
+          <div className="flex flex-row justify-center">
+            <img
+              className="object-contain w-1/2"
+              src={data?.FourthImageLink}
+              alt={data?.FourthImageAlt}
+            />
+            <p className="mb-4 text-sm ml-4">{data?.ThirdText}</p>
           </div>
         </div>
       </div>
+      <div className="card-content flex flex-row justify-between">
+        <h1>Commentaires</h1>
+        <button type="button" className="">
+          Ajouter un commentaire
+        </button>
+      </div>
+      {comments.lenght > 0 ? (
+        <div className="flex flex-col">
+          <div className="flex flex-row justify-center">
+            <h1>{comments && comments[0].NickName}</h1>
+            <p>{comments && comments[0].Comment}</p>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

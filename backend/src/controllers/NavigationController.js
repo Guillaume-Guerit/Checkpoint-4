@@ -1,11 +1,15 @@
+/* eslint-disable no-param-reassign */
 const models = require("../models");
 
 class NavigationController {
   static browse = (req, res) => {
     models.navigation
-      .findAllForNavigation()
+      .findAll()
       .then(([rows]) => {
-        res.send(rows[0]);
+        models.navigation.findAllLinks().then(([links]) => {
+          rows[0].links = links;
+          res.send(rows[0]);
+        });
       })
       .catch((err) => {
         console.error(err);

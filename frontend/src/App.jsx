@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Limits from "./pages/Limits";
 import LimitsDetails from "./pages/LimitsDetails";
+import Contact from "./pages/Contact";
+import Login from "./pages/Login";
 import "bulma/css/bulma.min.css";
 
 import "./App.css";
@@ -13,8 +15,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/login" element={<Login />} />
-          <Route path="/contact" element={<Contact />} /> */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/limits" element={<Limits />} />
           <Route path="/limit/:id" element={<LimitsDetails />} />
         </Routes>
