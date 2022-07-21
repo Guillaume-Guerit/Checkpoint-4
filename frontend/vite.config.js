@@ -1,4 +1,8 @@
+/* eslint-disable import/order */
+/* eslint-disable import/first */
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require("path");
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 

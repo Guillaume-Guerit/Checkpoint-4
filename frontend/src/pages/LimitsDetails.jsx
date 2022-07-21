@@ -1,12 +1,12 @@
 import Navbar from "../components/NavBar";
-import HomeMain from "../components/HomeMain";
 import Footer from "../components/Footer";
+import LimitsDetailsMain from "../components/LimitsDetailsMain";
 
-export default function Home() {
+export default function LimitsDetails() {
   return (
     <div>
       <Navbar />
-      <HomeMain />
+      <LimitsDetailsMain />
       <Footer />
     </div>
   );
