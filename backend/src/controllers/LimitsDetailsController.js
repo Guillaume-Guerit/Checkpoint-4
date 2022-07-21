@@ -57,13 +57,34 @@ class LimitsDetailsController {
   };
 
   static add = (req, res) => {
-    const LimitsDetails = req.body;
+    const Limits = req.body;
+    const limitsElements = {
+      Title: Limits.FirstTitle,
+      Text: Limits.Text,
+      ImageLink: Limits.ImageLink,
+      ImageAlt: Limits.ImageAlt,
+    };
+    const limitsDetails = {
+      Title: Limits.Title,
+      FirstText: Limits.FirstText,
+      SecondText: Limits.SecondText,
+      ThirdText: Limits.ThirdText,
+      FirstImageLink: Limits.FirstImageLink,
+      FirstImageAlt: Limits.FirstImageAlt,
+      SecondImageLink: Limits.SecondImageLink,
+      SecondImageAlt: Limits.SecondImageAlt,
+      ThirdImageLink: Limits.ThirdImageLink,
+      ThirdImageAlt: Limits.ThirdImageAlt,
+      FourthImageLink: Limits.FourthImageLink,
+      FourthImageAlt: Limits.FourthImageAlt,
+    };
 
-    // TODO validations (length, format...)
-
-    models.LimitsDetails.insert(LimitsDetails)
+    models.limits_details
+      .insertLimitsElements(limitsElements)
       .then(([result]) => {
-        res.status(201).send({ ...LimitsDetails, id: result.insertId });
+        models.limits_details.insertLimitsDetails(limitsDetails).then(() => {
+          res.status(201).send({ ...limitsDetails, id: result.insertId });
+        });
       })
       .catch((err) => {
         console.error(err);

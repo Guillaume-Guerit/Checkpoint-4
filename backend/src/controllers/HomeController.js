@@ -29,12 +29,16 @@ class HomeController {
 
   static edit = (req, res) => {
     const Home = req.body;
+    const toPut = {
+      Title: Home.Title,
+      Text: Home.Text,
+      FirstImageLink: Home.FirstImageLink,
+      FirstImageAlt: Home.FirstImageAlt,
+      SecondImageLink: Home.SecondImageLink,
+      SecondImageAlt: Home.SecondImageAlt,
+    };
 
-    // TODO validations (length, format...)
-
-    Home.id = parseInt(req.params.id, 10);
-
-    models.Home.update(Home)
+    models.Home.update(toPut, Home.idFixe)
       .then(([result]) => {
         if (result.affectedRows === 0) {
           res.sendStatus(404);

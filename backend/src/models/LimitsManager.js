@@ -5,8 +5,8 @@ class LimitsManager extends AbstractManager {
 
   insert(Limits) {
     return this.connection.query(
-      `insert into ${LimitsManager.table} (title) values (?)`,
-      [Limits.title]
+      `insert into ${LimitsManager.table} (title, text, ImageLink, ImageAlt) values (?, ?, ?, ?)`,
+      [Limits.title, Limits.text, Limits.ImageLink, Limits.ImageAlt]
     );
   }
 

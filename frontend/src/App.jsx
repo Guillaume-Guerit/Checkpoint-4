@@ -5,6 +5,7 @@ import Limits from "./pages/Limits";
 import LimitsDetails from "./pages/LimitsDetails";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
+import Admin from "./pages/Admin";
 import "bulma/css/bulma.min.css";
 
 import "./App.css";
@@ -19,6 +20,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/limits" element={<Limits />} />
           <Route path="/limit/:id" element={<LimitsDetails />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </Router>
     </div>
