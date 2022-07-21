@@ -10,6 +10,13 @@ class AbstractManager {
     ]);
   }
 
+  findLimitsDetails(id) {
+    return this.connection.query(
+      `select * from  ${this.table} where idLimits_Details = ?`,
+      [id]
+    );
+  }
+
   findAll() {
     return this.connection.query(`select * from  ${this.table}`);
   }
