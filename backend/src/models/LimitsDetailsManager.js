@@ -43,6 +43,31 @@ class LimitsDetailsManager extends AbstractManager {
       [LimitsDetails.title, LimitsDetails.id]
     );
   }
+
+  deleteLimistsElements(id) {
+    return this.connection.query(
+      `delete from Limits_Elements where idLimits_Elements = ?`,
+      [id]
+    );
+  }
+
+  deleteLimitsDetails(id) {
+    return this.connection.query(
+      `delete from limits_details where idLimits_Details = ?`,
+      [id]
+    );
+  }
+
+  addComment(comment) {
+    return this.connection.query(
+      `insert into comments (Limits_Details_idLimits_Details, NickName, Comment) values (?, ?, ?)`,
+      [
+        comment.Limits_Details_idLimits_Details,
+        comment.NickName,
+        comment.Comment,
+      ]
+    );
+  }
 }
 
 module.exports = LimitsDetailsManager;

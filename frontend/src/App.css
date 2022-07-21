@@ -13,6 +13,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.background {
+  background-image: url("https://i.ibb.co/6FVcKBB/Bgi.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

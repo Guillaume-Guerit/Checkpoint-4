@@ -27,6 +27,8 @@ router.get("/limits", LimitsController.browse);
 router.get("/limitsdetails", LimitsDetailsController.browse);
 router.get("/limitsdetails/:id", LimitsDetailsController.read);
 router.post("/limitsdetailspost", LimitsDetailsController.add);
+router.delete("/limitsdetailsdelete/:id", LimitsDetailsController.delete);
+router.post("/comments", LimitsDetailsController.addComment);
 
 router.get("/navigation", NavigationController.browse);
 

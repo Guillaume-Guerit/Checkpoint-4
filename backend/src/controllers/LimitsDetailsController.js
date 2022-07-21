@@ -92,9 +92,30 @@ class LimitsDetailsController {
       });
   };
 
+  static addComment = (req, res) => {
+    const comment = req.body;
+    const commentToAdd = {
+      Limits_Details_idLimits_Details: comment.Limits_Details_idLimits_Details,
+      NickName: comment.NickName,
+      Comment: comment.Comment,
+    };
+
+    models.limits_details
+      .addComment(commentToAdd)
+      .then(([result]) => {
+        res.status(201).send({ ...comment, id: result.insertId });
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
   static delete = (req, res) => {
-    models.LimitsDetails.delete(req.params.id)
+    models.limits_details
+      .deleteLimistsElements(req.params.id)
       .then(() => {
+        models.limits_details.deleteLimitsDetails(req.params.id);
         res.sendStatus(204);
       })
       .catch((err) => {

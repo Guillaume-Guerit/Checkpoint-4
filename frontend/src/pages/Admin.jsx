@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 function Admin() {
-  const [adminTouch, setAdminTouch] = useState("");
+  const [limits, setLimits] = useState([]);
+  const [id, setId] = useState(0);
+  const [adminTouch, setAdminTouch] = useState(0);
   const [adminTouch2, setAdminTouch2] = useState("");
+  const [adminTouch3, setAdminTouch3] = useState(0);
   const [data, setData] = useState({
+    id: "",
     idFixe: 1,
     FirstTitle: "",
     Text: "",
@@ -24,6 +28,17 @@ function Admin() {
     FourthImageAlt: "",
   });
 
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/limits`)
+      .then((res) => {
+        setLimits(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
   const editData = (e) => {
     setData({
       ...data,
@@ -31,7 +46,12 @@ function Admin() {
     });
   };
 
+  const editId = (e) => {
+    setId(e.target.value);
+  };
+
   const handlePost = (e) => {
+    setAdminTouch("");
     e.preventDefault();
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/limitsdetailspost`, data)
@@ -45,6 +65,7 @@ function Admin() {
 
   const handlePutHome = (e) => {
     e.preventDefault();
+    setAdminTouch2("");
     axios
       .put(`${import.meta.env.VITE_BACKEND_URL}/homeput`, data)
       .then(() => {
@@ -55,8 +76,21 @@ function Admin() {
       });
   };
 
+  const handleDeleteLimit = (e) => {
+    e.preventDefault();
+    axios
+      .delete(`${import.meta.env.VITE_BACKEND_URL}/limitsdetailsdelete/${id}`)
+      .then(() => {
+        console.warn(data);
+        setAdminTouch3(0);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   return (
-    <div className="w-full">
+    <div className="w-full background">
       <h1>Admin</h1>
       <select
         className="flex flex-col w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
@@ -65,7 +99,7 @@ function Admin() {
         <option value="0">Sélectionner une option</option>
         <option value="1">Ajouter une limite</option>
         <option value="2">Mettre à jour</option>
-        <option value="3">Supprimer</option>
+        <option value="3">Supprimer une limite</option>
       </select>
       {adminTouch === "1" ? (
         <div className="flex flex-col">
@@ -255,7 +289,7 @@ function Admin() {
                 name="Title"
                 type="text"
                 placeholder="Titre"
-                onChange={(e) => editData(e)}
+                onChange={(e) => editId(e)}
               />
             </label>
             <label className="text-base mt-4">
@@ -311,6 +345,40 @@ function Admin() {
               Mettre à jour
             </button>
           </form>
+        </div>
+      ) : null}
+      {adminTouch === "3" ? (
+        <div className="flex flex-col">
+          <select
+            className="flex flex-col w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+            onChange={(e) => {
+              setAdminTouch3(e.target.value);
+              editId(e);
+            }}
+          >
+            {limits &&
+              limits.map((limit) => (
+                <option name="id" value={limit.idLimits_Elements}>
+                  {limit.Title}
+                </option>
+              ))}
+          </select>
+          {adminTouch3 !== "0" ? (
+            <div className="flex flex-col">
+              <h1 className="mt-4 text-xl">Vous aller supprimer la limite :</h1>
+              <h2 className="mt-4 text-xl">
+                {limits[id - 1] && limits[id - 1].Title}
+              </h2>
+              <h3 className="mt-4 text-xl">Etes vous sur ?</h3>
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+                type="submit"
+                onClick={(e) => handleDeleteLimit(e)}
+              >
+                Supprimer
+              </button>
+            </div>
+          ) : null}
         </div>
       ) : null}
     </div>
