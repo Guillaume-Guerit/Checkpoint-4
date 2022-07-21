@@ -16,16 +16,16 @@ function HomeMain() {
   }, []);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col background shadow-2xl">
       <div className="card-image">
-        <h1 className="underline text-xl mb-2">{data?.Title}</h1>
+        <h1 className="underline text-xl mb-2 drop-shadow-lg">{data?.Title}</h1>
         <img
           className="mb-2"
           src={data?.FirstImageLink}
           alt={data?.FirstImageAlt}
         />
       </div>
-      <div className="card-content">
+      <div className="card-content shadow-2xl">
         <div className="flex flex-col">
           <p className="mb-4">{data?.Text}</p>
           <img

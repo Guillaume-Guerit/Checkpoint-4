@@ -20,10 +20,14 @@ function Navbar() {
 
   return (
     <div>
-      <nav className="navbar" role="navigation" aria-label="main navigation">
+      <nav
+        className="navbar is-transparent"
+        role="navigation"
+        aria-label="main navigation"
+      >
         <div className="navbar-brand">
           <img
-            className="object-contain w-1/5 ml-2"
+            className="object-contain w-1/6 ml-2"
             src={data?.ImageLink}
             alt={data?.ImageAlt}
           />
@@ -33,7 +37,9 @@ function Navbar() {
             onClick={() => {
               setisActive(!isActive);
             }}
-            className={`navbar-burger burger ${isActive ? "is-active" : ""}`}
+            className={`navbar-burger burger hover:scale-125 ease-in-out duration-500 ${
+              isActive ? "is-active " : ""
+            }`}
             aria-label="menu"
             aria-expanded="false"
             data-target="navbarBasicExample"
@@ -45,7 +51,7 @@ function Navbar() {
         </div>
         <div
           id="navbarBasicExample"
-          className={`navbar-menu ${isActive ? "is-active" : ""}`}
+          className={`navbar-menu ${isActive ? "is-active " : ""}`}
         >
           <div className="navbar-end">
             {data.links &&
@@ -53,7 +59,7 @@ function Navbar() {
                 <NavLink
                   key={item.idNavLink}
                   to={item.LinkPath}
-                  className="navbar-item"
+                  className="navbar-item hover:scale-125 ease-in-out duration-500"
                   activeClassName="is-active"
                 >
                   {item.LinkLabel}

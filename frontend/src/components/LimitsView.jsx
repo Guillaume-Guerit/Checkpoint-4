@@ -18,7 +18,7 @@ function LimitsView() {
   }, []);
 
   return (
-    <div className="flex flex-col w-full h-full">
+    <div className="flex flex-col w-full h-full background shadow-2xl">
       <div className="flex flex-col">
         <h1 className="underline text-xl mb-4">{data[0]?.MainTitle}</h1>
         <div className="flex flex-col justify-center">

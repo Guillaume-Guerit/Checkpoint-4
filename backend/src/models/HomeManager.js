@@ -10,10 +10,10 @@ class HomeManager extends AbstractManager {
     );
   }
 
-  update(Home) {
+  update(Home, id) {
     return this.connection.query(
-      `update ${HomeManager.table} set title = ? where id = ?`,
-      [Home.title, Home.id]
+      `update ${HomeManager.table} set ? where idHome = ?`,
+      [Home, id]
     );
   }
 }
