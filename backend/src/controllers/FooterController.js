@@ -1,10 +1,17 @@
+/* eslint-disable no-param-reassign */
 const models = require("../models");
 
 class FooterController {
   static browse = (req, res) => {
-    models.Footer.findAllForFooter()
+    models.Footer.findAll()
       .then(([rows]) => {
-        res.send(rows[0]);
+        models.navigation.findAllLinks().then(([links]) => {
+          rows[0].links = links;
+          models.Footer.findImageForFooter().then(([image]) => {
+            rows[0].image = image;
+            res.send(rows[0]);
+          });
+        });
       })
       .catch((err) => {
         console.error(err);

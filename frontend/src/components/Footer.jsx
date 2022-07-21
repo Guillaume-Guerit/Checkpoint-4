@@ -18,7 +18,7 @@ function Footer() {
   }, []);
 
   return (
-    <div className="flex flex-row justify-evenly mt-8">
+    <div className="flex flex-col justify-evenly mt-8">
       <div className="">
         <img
           className="mb-2 mr-2 w-2/3"
@@ -26,7 +26,7 @@ function Footer() {
           alt={data.image && data.image[0].ImageAlt}
         />
       </div>
-      <div className="flex flex-col text-sm justify-evenly">
+      <div className="flex flex-row text-sm justify-evenly">
         {data.links &&
           data.links.map((item) => (
             <NavLink
@@ -39,7 +39,7 @@ function Footer() {
             </NavLink>
           ))}
       </div>
-      <div className="flex flex-col text-sm justify-evenly">
+      <div className="flex flex-row text-sm justify-evenly">
         <p>{data?.FirstName}</p>
         <p>{data?.LastName}</p>
         <p>{data?.Email}</p>
