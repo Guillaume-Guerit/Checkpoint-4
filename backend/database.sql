@@ -63,6 +63,8 @@ CREATE TABLE IF NOT EXISTS `Check4`.`Contact` (
   `Email` VARCHAR(255) NOT NULL,
   `Message` LONGTEXT NOT NULL,
   `ButtonLabel` VARCHAR(45) NOT NULL,
+  `Title` VARCHAR(255) NOT NULL,
+  `Text` LONGTEXT NOT NULL,
   PRIMARY KEY (`idContact`))
 ENGINE = InnoDB;
 
@@ -246,9 +248,9 @@ VALUES
   ("Guillaume", "Guerit", "guillaumeguerit@gmail.com", "+33685991756");
 
   Insert INTO
-  `Check4`.`Contact` (FirstName, LastName, Email, Message, ButtonLabel)
+  `Check4`.`Contact` (FirstName, LastName, Email, Message, ButtonLabel, Title, Text)
   VALUES
-  ("Prénom", "Nom", "Email", "Taper votre message ici", "Envoyer");
+  ("Prénom", "Nom", "Email", "Taper votre message ici", "Envoyer", "N'hésitez à nous envoyer un message !", "En effet, nous sommes extrêmement attentifs à vos remarques, de nouvelles limites sont sans cesse découvertes, nous pouvons en ajouter ou encore un complément à celles existantes, merci d'avance à vous.");
 
   Insert INTO
   `Check4`.`NavLink` (LinkLabel, LinkPath, Navigation_idNavigation)
@@ -261,6 +263,11 @@ VALUES
   `Check4`.`Login` (Title, FirstInput, SecondInput, ForgotPassword, ForgotPasswordOnClick)
   VALUES
   ("Connexion", "Email", "Mot de passe", "Mot de passe oublié ?", "Eh bien c'est dommage");
+
+  Insert INTO
+  `Check4`.`Comments` (Limits_Details_idLimits_Details, NickName, Comment)
+  VALUES
+  (1, "Kevin Boule D'acier", "Ca m'en touche une sans faire bouger l'autre, comme dirais un grand homme, ou pas...");
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
