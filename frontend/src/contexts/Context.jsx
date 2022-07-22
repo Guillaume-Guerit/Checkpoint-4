@@ -5,7 +5,7 @@ import React, { createContext, useState } from "react";
 const Context = createContext();
 
 function Provider({ children }) {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(false);
 
   return (
     <Context.Provider

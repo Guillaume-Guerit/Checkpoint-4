@@ -4,6 +4,32 @@ import { useEffect, useState } from "react";
 function ContactMain() {
   const [data, setData] = useState([]);
 
+  const [mailData, setMailData] = useState([
+    {
+      FirstName: "",
+      LastName: "",
+      Email: "",
+      Message: "",
+    },
+  ]);
+
+  const editData = (area, value) => {
+    const newData = [...mailData];
+    newData[0][area] = value;
+    setMailData(newData);
+  };
+
+  const SubmitMail = () => {
+    axios
+      .post(`${import.meta.env.VITE_BACKEND_URL}/sendEmail`, mailData)
+      .then((res) => {
+        console.warn(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/contact`)
@@ -26,33 +52,46 @@ function ContactMain() {
           <label className="mt-4 w-3/4">
             <input
               className="w-full border-2 border-blue-500 rounded-lg py-2 px-4"
+              name="FirstName"
               type="text"
               placeholder={data?.FirstName}
+              onChange={(e) => editData(e.target.name, e.target.value)}
+              required
             />
           </label>
           <label className="mt-4 w-3/4">
             <input
               className="w-full border-2 border-blue-500 rounded-lg py-2 px-4"
+              name="LastName"
               type="text"
               placeholder={data?.LastName}
+              onChange={(e) => editData(e.target.name, e.target.value)}
+              required
             />
           </label>
           <label className="mt-4 w-3/4">
             <input
               className="w-full border-2 border-blue-500 rounded-lg py-2 px-4"
+              name="Email"
               type="text"
               placeholder={data?.Email}
+              onChange={(e) => editData(e.target.name, e.target.value)}
+              required
             />
           </label>
           <label className="mt-4 w-3/4">
             <textarea
               className="w-full border-2 border-blue-500 rounded-lg py-4 px-4"
+              name="Message"
               placeholder={data?.Message}
+              onChange={(e) => editData(e.target.name, e.target.value)}
+              required
             />
           </label>
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 mb-8"
             type="submit"
+            onClick={SubmitMail}
           >
             {data?.ButtonLabel}
           </button>
