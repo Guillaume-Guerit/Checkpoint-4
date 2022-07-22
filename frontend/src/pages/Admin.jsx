@@ -289,7 +289,7 @@ function Admin() {
                 name="Title"
                 type="text"
                 placeholder="Titre"
-                onChange={(e) => editId(e)}
+                onChange={(e) => editData(e)}
               />
             </label>
             <label className="text-base mt-4">
