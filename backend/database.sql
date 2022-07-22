@@ -267,7 +267,10 @@ VALUES
   Insert INTO
   `Check4`.`Comments` (Limits_Details_idLimits_Details, NickName, Comment)
   VALUES
-  (1, "Kevin Boule D'acier", "Ca m'en touche une sans faire bouger l'autre, comme dirais un grand homme, ou pas...");
+  (1, "Kevin Boule D'acier", "Ca m'en touche une sans faire bouger l'autre..."),
+  (1, "Guillaume CSSNemesis", "Rohhh Kevin..."),
+  (2, "Lionel Jeanjean", "Les potagers c'est super !"),
+  (5, "Alex TheGreatDesigner", "Guillaume, ton site est absolument hideux, j'ai vomi instantanément !");
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

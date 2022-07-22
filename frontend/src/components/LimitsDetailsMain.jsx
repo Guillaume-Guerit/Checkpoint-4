@@ -84,15 +84,17 @@ function LimitsDetailsMain() {
         </div>
       </div>
       <div className="card-content flex flex-row justify-between">
-        <h1 className="text-xl">Commentaires</h1>
+        <h1 className="text-xl font-bold">Commentaires</h1>
       </div>
       {comments[0] && (
         <div className="flex flex-col mb-2">
           <div className="flex flex-col justify-center">
             {comments.map((commentt) => (
-              <div className="flex flex-col justify-center border-2 border-blue-500 rounded-lg py-2 px-2 bg-white">
-                <p className="w-full">De : {commentt.NickName}</p>
-                <p className="w-full">Commentaire : {commentt.Comment}</p>
+              <div className="flex flex-col justify-center border-2 border-blue-500 rounded-lg text-sm bg-gray-100">
+                <p className="w-full text-start mb-2">
+                  De : {commentt.NickName}
+                </p>
+                <p className="w-full">{commentt.Comment}</p>
               </div>
             ))}
           </div>
@@ -100,7 +102,7 @@ function LimitsDetailsMain() {
       )}
       <button
         type="button"
-        className="text-sm hover:scale-125 ease-in-out duration-500 mb-2"
+        className="text-sm hover:scale-125 ease-in-out duration-500 m-4 font-bold"
         onClick={() => setComment(true)}
       >
         Ajouter un commentaire
@@ -110,14 +112,14 @@ function LimitsDetailsMain() {
           <input
             type="text"
             placeholder="Votre pseudo"
-            className="w-full border-2 border-blue-500 rounded-lg py-2 px-2 mb-2"
+            className="w-full border-2 border-blue-500 rounded-lg mb-2"
             name="NickName"
             onChange={(e) => editComments(e)}
           />
           <input
             type="text"
             placeholder="Votre commentaire"
-            className="w-full border-2 border-blue-500 rounded-lg py-2 px-2 mb-2"
+            className="w-full border-2 border-blue-500 rounded-lg mb-2"
             name="Comment"
             onChange={(e) => editComments(e)}
           />
